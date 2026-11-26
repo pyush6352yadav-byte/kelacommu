@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>kela community – backchodiiiis</title>
+  <meta name="description" content="kela community – backchodiiiis: the official entertainment platform of three best friends. Roasts, games, memories and pure chaos.">
+  <meta name="theme-color" content="#0b0614">
+  <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%8C%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- welcome animation -->
+  <div id="splash" class="splash" role="status" aria-live="polite">
+    <div class="splash-inner">
+      <div class="splash-emoji" aria-hidden="true">🍌</div>
+      <div class="splash-title">kela community</div>
+      <p id="splashText" class="splash-text">Loading bakchodi…</p>
+      <div class="splash-bar"><i id="splashBar"></i></div>
+      <button id="splashSkip" class="btn btn-ghost btn-sm" type="button">Skip intro</button>
+    </div>
+  </div>
+
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="topbar glass" id="topbar">
+    <a class="brand" href="#home" aria-label="kela community – home">
+      <span class="brand-logo" aria-hidden="true">🍌</span>
+      <span class="brand-text">kela<b>community</b></span>
+    </a>
+    <nav class="quick-nav" id="quickNav" aria-label="Quick links"></nav>
+    <button id="menuBtn" class="btn btn-primary btn-sm menu-btn" type="button" aria-expanded="false" aria-controls="menuOverlay">
+      <span class="burger" aria-hidden="true"></span> Menu
+    </button>
+  </header>
+
+  <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
+    <div class="menu-panel glass">
+      <div class="menu-head">
+        <h2>Explore the Chaos</h2>
+        <button class="icon-btn" data-close type="button" aria-label="Close menu">✕</button>
+      </div>
+      <nav class="menu-grid" id="menuGrid" aria-label="All sections"></nav>
+    </div>
+  </div>
+
+  <nav class="dot-nav" id="dotNav" aria-label="Section progress"></nav>
+
+  <noscript><p class="noscript">Is website ko chalane ke liye JavaScript on karo 🍌</p></noscript>
+
+  <main id="main">
+
+    <!-- 1. HOME -->
+    <section id="home" class="section hero" aria-labelledby="heroTitle">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Est. 2026 · Official Chaos Registry</p>
+          <h1 id="heroTitle" class="hero-title"><span class="word w1 grad">kela</span> <span class="word w2">community</span></h1>
+          <p class="hero-sub">– backchodiiiis –</p>
+          <p class="typed-line">Aap hain: <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span></p>
+          <p class="hero-text">Teen dost. Ek group chat. Zero productivity. Yeh website un teeno ki bakchodi, yaadon, roasts aur games ko dedicated hai.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#fun">🎮 Enter Fun Zone</a>
+            <a class="btn btn-ghost" href="#roast">🔥 Roast Someone</a>
+          </div>
+          <div class="counter-wrap glass">
+            <p id="sinceLabel" class="since"></p>
+            <div id="friendCounter" class="counter" role="timer" aria-label="Time since our friendship began"></div>
+          </div>
+        </div>
+        <div class="hero-visual" id="heroVisual"></div>
+      </div>
+      <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+    </section>
+
+    <!-- 2. THE TRIO -->
+    <section id="trio" class="section" aria-labelledby="trioTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">02</span><h2 id="trioTitle">The <span class="grad">Trio</span></h2><p>Teen log. Teen personalities. Zero brain cells (shared).</p></header>
+        <div id="trioGrid" class="grid-3"></div>
+      </div>
+    </section>
+
+    <!-- 3. ROAST ROOM -->
+    <section id="roast" class="section" aria-labelledby="roastTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">03</span><h2 id="roastTitle">Roast <span class="grad">Room</span></h2><p>Sab mazaak hai. Bura mat maanna. Ya maan lo, humein farak nahi padta.</p></header>
+        <div class="grid-2">
+          <article class="panel glass reveal">
+            <h3>🔥 Roast Generator</h3>
+            <label class="fld"><span>Target</span><select id="roastTarget"></select></label>
+            <div class="chips" id="roastLevel" role="radiogroup" aria-label="Roast intensity">
+              <button class="chip active" type="button" role="radio" aria-checked="true" data-level="mild">😏 Mild</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-level="medium">🌶️ Medium</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-level="spicy">☠️ Spicy</button>
+            </div>
+            <button id="roastBtn" class="btn btn-primary" type="button">🔥 Generate Roast</button>
+            <div class="out-card" aria-live="polite">
+              <small id="roastMeta" class="muted">Abhi tak koi roast nahi.</small>
+              <p id="roastText" class="roast-text">Button dabao, aur dekho kiski shamat aati hai…</p>
+            </div>
+            <div class="row-actions"><button id="roastCopy" class="btn btn-ghost btn-sm" type="button" disabled>📋 Copy</button></div>
+            <ul id="roastHistory" class="history" aria-label="Recent roasts"></ul>
+          </article>
+          <article class="panel glass reveal">
+            <h3>⚔️ Friend Face-Off</h3>
+            <div class="grid-2-sm">
+              <label class="fld"><span>Fighter A</span><select id="cmpA"></select></label>
+              <label class="fld"><span>Fighter B</span><select id="cmpB"></select></label>
+            </div>
+            <button id="compareBtn" class="btn btn-pink" type="button">⚔️ Compare</button>
+            <div id="compareOut" class="compare-out" aria-live="polite"><p class="muted">Do fighters chuno aur Compare dabao.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AWARDS -->
+    <section id="awards" class="section" aria-labelledby="awardsTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">04</span><h2 id="awardsTitle">Friendship <span class="grad">Awards</span></h2><p>Oscars ko bhool jao. Yeh asli awards hain. Card pe tap karke winner reveal karo.</p></header>
+        <div class="row-actions center">
+          <button id="revealAll" class="btn btn-primary btn-sm" type="button">🎉 Reveal all</button>
+          <button id="hideAll" class="btn btn-ghost btn-sm" type="button">🙈 Hide all</button>
+          <button id="chaosMode" class="btn btn-ghost btn-sm" type="button" aria-pressed="false">🌀 Chaos Mode</button>
+        </div>
+        <div id="awardsGrid" class="awards-grid"></div>
+      </div>
+    </section>
+
+    <!-- 5. FUN ZONE -->
+    <section id="fun" class="section" aria-labelledby="funTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">05</span><h2 id="funTitle">Fun <span class="grad">Zone</span></h2><p>Chaar games. Zero rules. Maximum bakchodi.</p></header>
+        <div class="panel glass tabs" id="funTabs">
+          <div class="tablist" role="tablist" aria-label="Games">
+            <button class="tab" role="tab" type="button" id="tab-tod" aria-controls="panel-tod" aria-selected="true">🎤 Truth or Dare</button>
+            <button class="tab" role="tab" type="button" id="tab-wheel" aria-controls="panel-wheel" aria-selected="false" tabindex="-1">🎡 Spin the Wheel</button>
+            <button class="tab" role="tab" type="button" id="tab-quiz" aria-controls="panel-quiz" aria-selected="false" tabindex="-1">🧠 Friendship Quiz</button>
+            <button class="tab" role="tab" type="button" id="tab-guess" aria-controls="panel-guess" aria-selected="false" tabindex="-1">🎯 Guess the Friend</button>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="panel-tod" aria-labelledby="tab-tod"><div id="todRoot"></div></div>
+          <div class="tabpanel" role="tabpanel" id="panel-wheel" aria-labelledby="tab-wheel" hidden>
+            <div class="wheel-grid">
+              <div class="wheel-box">
+                <div class="wheel-pointer" aria-hidden="true"></div>
+                <canvas id="wheelCanvas" width="600" height="600" aria-label="Spinning wheel"></canvas>
+              </div>
+              <div class="wheel-side">
+                <button id="spinBtn" class="btn btn-primary" type="button">🎡 SPIN!</button>
+                <p id="wheelResult" class="wheel-result" aria-live="polite">Spin karo aur apni kismat dekho.</p>
+                <ul id="wheelHistory" class="history" aria-label="Previous spins"></ul>
+                <details class="adm-details"><summary>✏️ Wheel customize karo</summary>
+                  <label class="fld"><span>Options (ek line = ek option, 2–16)</span><textarea id="wheelEdit" rows="6"></textarea></label>
+                  <p id="wheelMsg" class="form-msg" role="status"></p>
+                  <button id="wheelSave" class="btn btn-ghost btn-sm" type="button">Save wheel</button>
+                </details>
+              </div>
+            </div>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="panel-quiz" aria-labelledby="tab-quiz" hidden><div id="quizRoot"></div></div>
+          <div class="tabpanel" role="tabpanel" id="panel-guess" aria-labelledby="tab-guess" hidden>
+            <p class="muted">Clues default hain — Admin → Content mein apne dosto ke hisaab se badal do.</p>
+            <div id="guessRoot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. COURT -->
+    <section id="court" class="section" aria-labelledby="courtTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">06</span><h2 id="courtTitle">Friendship <span class="grad">Court</span></h2><p>Dosti mein jhagde hote hain. Yahan unka faisla hota hai. Faisla final hai (chai ke baad badal sakta hai).</p></header>
+        <div class="grid-2">
+          <article class="panel glass reveal">
+            <h3>📜 File a Case</h3>
+            <form id="courtForm" novalidate>
+              <div class="grid-2-sm">
+                <label class="fld"><span>Complainant</span><select id="courtPlaintiff"></select></label>
+                <label class="fld"><span>Accused</span><select id="courtAccused"></select></label>
+              </div>
+              <label class="fld"><span>Complaint</span><textarea id="courtText" rows="3" maxlength="200" placeholder="Jaise: Last Maggi packet kha gaya…"></textarea><small id="courtCount" class="muted">0/200</small></label>
+              <p id="courtMsg" class="form-msg" role="status" aria-live="polite"></p>
+              <div class="row-actions">
+                <button id="courtSubmit" class="btn btn-primary" type="submit">⚖️ File Case</button>
+                <button id="courtRandom" class="btn btn-ghost" type="button">🎲 Surprise me</button>
+              </div>
+            </form>
+            <div id="judgeRow" class="judge-row"></div>
+          </article>
+          <article class="panel glass reveal">
+            <h3>🔨 Courtroom</h3>
+            <div id="courtStage" class="court-stage" aria-live="polite"></div>
+            <div class="docket-head"><h4>🗂️ Docket</h4><button id="courtClear" class="btn btn-ghost btn-sm" type="button">Clear</button></div>
+            <ul id="docketList" class="docket"></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FBI -->
+    <section id="fbi" class="section" aria-labelledby="fbiTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">07</span><h2 id="fbiTitle">FBI <span class="grad">Investigation</span> Room</h2><p>Classified files. Sab kuch fake aur sab kuch sach. (Sab mazaak hai.)</p></header>
+        <div id="fbiGrid" class="grid-3"></div>
+        <article class="panel glass lie-panel reveal">
+          <h3>📡 Lie Detector 3000</h3>
+          <div class="grid-2-sm">
+            <label class="fld"><span>Suspect</span><select id="ldSuspect"></select></label>
+            <label class="fld"><span>Sawaal</span><input id="ldQuestion" type="text" maxlength="100" placeholder="Kya tune last fry khayi?" autocomplete="off"></label>
+          </div>
+          <p id="ldMsg" class="form-msg" role="status"></p>
+          <div class="gauge" aria-hidden="true"><div class="gauge-arc"></div><div class="needle" id="ldNeedle"></div><div class="gauge-hub"></div></div>
+          <button id="ldBtn" class="btn btn-primary" type="button">📡 Run Test</button>
+          <p id="ldResult" class="ld-result" aria-live="polite">Sawaal poochho. Machine sab jaanti hai.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8. MEMORY LANE -->
+    <section id="memories" class="section" aria-labelledby="memTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">08</span><h2 id="memTitle">Memory <span class="grad">Lane</span></h2><p>Jo yaadein banti hain, wahi dosti ban jaati hain.</p></header>
+        <div class="row-actions center"><button id="randomMemory" class="btn btn-primary btn-sm" type="button">🎲 Random memory</button></div>
+        <div id="galleryGrid" class="gallery"></div>
+        <h3 class="sub-title">🕰️ Friendship Timeline</h3>
+        <div id="timeline" class="timeline"></div>
+      </div>
+    </section>
+
+    <!-- 9. CONFESSIONS -->
+    <section id="confessions" class="section" aria-labelledby="confTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">09</span><h2 id="confTitle">Confession <span class="grad">Box</span></h2><p>Anonymous. Admin-approved. Bina hate, bina links, bina personal info.</p></header>
+        <div class="grid-2">
+          <article class="panel glass reveal">
+            <h3>🤫 Confess Karo</h3>
+            <form id="confForm" novalidate autocomplete="off">
+              <div class="grid-2-sm">
+                <label class="fld"><span>Nickname (optional)</span><input id="confNick" type="text" maxlength="20" placeholder="Anonymous"></label>
+                <label class="fld"><span>Category</span><select id="confCat"></select></label>
+              </div>
+              <label class="fld"><span>Confession</span><textarea id="confText" rows="4" maxlength="400" placeholder="Dil ki baat likho (10–400 characters)…"></textarea><small id="confCount" class="muted">0/400</small></label>
+              <div class="hp" aria-hidden="true"><label>Website <input id="confWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+              <label class="check"><input id="confConsent" type="checkbox"> <span>Main promise karta/karti hoon ki isme hate, links ya kisi ki personal info nahi hai.</span></label>
+              <p id="confMsg" class="form-msg" role="status" aria-live="polite"></p>
+              <button class="btn btn-primary" type="submit">📮 Submit Confession</button>
+            </form>
+            <p class="muted fine">Demo storage: confessions is browser mein save hote hain. Sabke liye shared box chahiye toh backend lagana padega.</p>
+          </article>
+          <article class="panel glass reveal">
+            <h3>💬 Confession Wall</h3>
+            <p id="confPending" class="muted"></p>
+            <div id="confWall" class="conf-wall"></div>
+          </article>
+        </div>
+        <article id="confMod" class="panel glass mod-panel" hidden>
+          <h3>🛡️ Moderation Queue <span class="pill">Admin only</span></h3>
+          <div id="confModList" class="mod-list"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10. STATS -->
+    <section id="stats" class="section" aria-labelledby="statsTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">10</span><h2 id="statsTitle">Friendship <span class="grad">Statistics</span></h2><p>Numbers jhooth nahi bolte. (Kabhi kabhi bolte hain.)</p></header>
+        <div id="statTiles" class="tiles"></div>
+        <div class="grid-2">
+          <article class="panel glass reveal">
+            <h3>📈 Personality Meter</h3>
+            <div id="chartTabs" class="chips" role="group" aria-label="Metric"></div>
+            <div id="traitChart" class="hbars"></div>
+          </article>
+          <article class="panel glass reveal">
+            <h3>🍩 Roast Targets</h3>
+            <div id="donutWrap"></div>
+          </article>
+          <article class="panel glass reveal">
+            <h3>🎮 Activity</h3>
+            <div id="activityBars" class="hbars"></div>
+          </article>
+          <article class="panel glass reveal">
+            <h3>🏅 Bakchodi Leaderboard</h3>
+            <ol id="leaderboard" class="leaderboard"></ol>
+            <h4>💞 Friendship Health</h4>
+            <div class="health"><div class="hb-track"><i id="healthBar"></i></div></div>
+            <p id="healthText" class="muted"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PREDICTIONS -->
+    <section id="predict" class="section" aria-labelledby="predTitle">
+      <div class="container narrow">
+        <header class="sec-head reveal"><span class="sec-no">11</span><h2 id="predTitle">Future <span class="grad">Prediction</span> Machine</h2><p>Banana Oracle sab dekhta hai. Sab. Kuch. (Sab galat hota hai.)</p></header>
+        <article class="panel glass reveal">
+          <label class="fld"><span>Kiska future?</span><select id="predFriend"></select></label>
+          <div class="chips" id="predCats" role="radiogroup" aria-label="Prediction category">
+            <button class="chip" type="button" role="radio" aria-checked="false" data-cat="career">💼 Career</button>
+            <button class="chip" type="button" role="radio" aria-checked="false" data-cat="love">💘 Love</button>
+            <button class="chip" type="button" role="radio" aria-checked="false" data-cat="money">💸 Money</button>
+            <button class="chip active" type="button" role="radio" aria-checked="true" data-cat="chaos">🌀 Chaos</button>
+          </div>
+          <button id="predBtn" class="btn btn-primary" type="button">🔮 Consult the Banana Oracle</button>
+          <div id="predOut" class="pred-out" aria-live="polite"><p class="muted">Oracle tayaar hai. Bas button dabao.</p></div>
+          <ul id="predHistory" class="history" aria-label="Past predictions"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 12. ADMIN -->
+    <section id="admin" class="section" aria-labelledby="adminTitle">
+      <div class="container">
+        <header class="sec-head reveal"><span class="sec-no">12</span><h2 id="adminTitle">Admin <span class="grad">Dashboard</span></h2><p>Profiles, memories, awards, content aur confessions yahan se manage hote hain.</p></header>
+        <div id="adminRoot"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 <b>kela community</b> – backchodiiiis · Made with 🍌 aur zero brain cells</p>
+    <p class="muted"><a href="#admin">Admin</a> · <a href="#home">Back to top ↑</a> · Data sirf is browser mein save hota hai.</p>
+  </footer>
+
+  <button id="toTop" class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card glass">
+      <button id="modalClose" class="icon-btn" type="button" aria-label="Close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
